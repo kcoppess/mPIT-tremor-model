@@ -83,7 +83,7 @@ def impact_PSD_extended(f, u_mean, Dr, rx, eb=0.8, phi_p=0.1, R=9, rho_s=2400,
     rx_matrix = np.tile(rx, (ff, 1)).transpose()
 
     Dr_dist = 1 # for representative grain size
-    m = rho_s * (4/3) * np.pi * Dr_matrix**3 # mass of representative grain size
+    m = rho_s * (4/3) * np.pi * (Dr_matrix/2)**3 # mass of representative grain size
 
     impact_force = mod.particle_impact_force(eb, m, u_matrix)
     impact_rate = mod.particle_impact_rate(u_matrix, phi_p, Dr_matrix, Dr_dist)

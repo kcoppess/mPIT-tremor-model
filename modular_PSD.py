@@ -103,7 +103,7 @@ def impact_PSD(f, u_mean=120, eb=0.8, phi_p=0.1, Dr=1.4e-3, R=9, rho_s=2400, df=
     PSD : array of PSD values at specified frequencies
     '''
     Dr_dist = 1 # for representative grain size
-    m = rho_s * (4/3) * np.pi * Dr**3 # mass of representative grain size
+    m = rho_s * (4/3) * np.pi * (Dr/2)**3 # mass of representative grain size
 
     impact_force = particle_impact_force(eb, m, u_mean)
     impact_rate = particle_impact_rate(u_mean, phi_p, Dr, Dr_dist)
