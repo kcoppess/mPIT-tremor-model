@@ -42,7 +42,7 @@ def turbulence_PSD_extended(f, u_mean, rx, Db=0.5, rho_g=0.5, rho_s=2400, R=9,
     RW_GF = mod.Rayleigh_greens_function_vertical(f_matrix, rho_s, rx_matrix, vc0, f0, xi, Q)
     gc.collect()
     
-    FGjz2 = F_tilda * (RW_GF[0] + RW_GF[1] + RW_GF[2])**2
+    FGjz2 = F_tilda * (RW_GF[0]**2 + RW_GF[1]**2 + RW_GF[2]**2)
     
     PSD = 8 * np.pi**3 * R * dz * f_matrix**2 * FGjz2
     
