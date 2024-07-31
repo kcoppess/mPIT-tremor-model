@@ -206,7 +206,7 @@ def turbulence_PSD(f, u_mean=120, Db=0.5, rho_g=0.5, rho_s=2400, R=9, df=300,
     F_tilda = force_spectrum(f, u_mean, rho_g, Db)
     RW_GF = Rayleigh_greens_function_vertical(f, rho_s, rx, vc0, f0, xi, Q)
 
-    FGjz2 = F_tilda * (RW_GF[0] + RW_GF[1] + RW_GF[2])**2
+    FGjz2 = F_tilda * (RW_GF[0]**2 + RW_GF[1]**2 + RW_GF[2]**2)
 
     PSD = 8 * np.pi**3 * R * df * f**2 * FGjz2
 
