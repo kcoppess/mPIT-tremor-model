@@ -190,7 +190,7 @@ def impact_PSD_ES_numGF(f, depths, gfs, u_mean, Dr, phi_p, dz=1, eb=0.8, R=9, rh
     phi_p_matrix = np.tile(phi_p, (ff, 1)).transpose()
 
     Dr_dist = 1 # for representative grain size
-    m = rho_s * (4/3) * np.pi * Dr_matrix**3 # mass of representative grain size
+    m = rho_s * (4/3) * np.pi * (Dr_matrix/2)**3 # mass of representative grain size
 
     impact_force = mod.particle_impact_force(eb, m, u_matrix)
     impact_rate = mod.particle_impact_rate(u_matrix, phi_p_matrix, Dr_matrix, Dr_dist)
@@ -235,8 +235,8 @@ def turbulence_PSD_ES_numGF(f, depths, gfs, u_mean, Db, rho_g, dz=1, R=9):
     F_tilda = mod.force_spectrum(f_matrix, u_matrix, rho_g_matrix, Db_matrix)
     gc.collect()
 
-    FGjz2 = F_tilda * (np.sqrt(2) * gfs[0][:,:,0] + gfs[1][:,:,0])**2
-    #FGjz2 = F_tilda * (gfs[:,:,1] + gfs[:,:,2] + gfs[:,:,0])**2
+    FGjz2 = F_tilda * (2 * gfs[0][:,:,0]**2 + gfs[1][:,:,0]**2)
+    #FGjz2 = F_tilda * (gfs[:,:,1]**2 + gfs[:,:,2]**2 + gfs[:,:,0]**2)
 
     PSD = 8 * np.pi**3 * R * dz * f_matrix**2 * np.abs(FGjz2)
 
